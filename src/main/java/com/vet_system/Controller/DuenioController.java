@@ -1,8 +1,11 @@
 package com.vet_system.Controller;
 import com.vet_system.Entity.Duenio;
+import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Service.DuenioService;
+import com.vet_system.Service.MascotaService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -16,6 +19,8 @@ public class DuenioController {
 
     @Autowired
     private DuenioService duenioService;
+    @Autowired
+    private MascotaService mascotaService;
 
     // POST - crear dueño
     @PostMapping
@@ -112,5 +117,21 @@ public class DuenioController {
         return ResponseEntity.ok(
                 duenioService.buscarPorNombreYApellido(nombre, apellido)
         );
+    }
+
+    @GetMapping("/{id}/mascotas")
+    public ResponseEntity<?> listarMascotasDelDuenio(@PathVariable Long id) {
+
+        try {
+            return ResponseEntity.ok(
+                    mascotaService.buscarPorDuenio(id)
+            );
+
+        } catch (ResourceNotFoundException e) {
+
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
     }
 }
