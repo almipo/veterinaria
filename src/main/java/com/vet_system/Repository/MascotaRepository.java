@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
-    List<Mascota> findByDuenoId(Long duenoId);
+    List<Mascota> findByDuenioId(Long duenioId);
 
-    boolean existsByNombreAndDuenoId(String nombre, Long duenoId);
+    boolean existsByNombreAndDuenioId(String nombre, Long duenioId);
 
     long countByEspecie(String especie);
 }

@@ -1,5 +1,8 @@
 package com.vet_system.Service;
+import com.vet_system.DTO.DuenioDTO;
 import com.vet_system.Entity.Duenio;
+import com.vet_system.Exception.ResourceNotFoundException;
+import com.vet_system.Mapper.DuenioMapper;
 import com.vet_system.Repository.DuenioRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -14,66 +17,86 @@ import java.util.Optional;
 
 
 public class DuenioService {
-    @Autowired
+
     private final DuenioRepository duenioRepository;
+    private final DuenioMapper duenioMapper;
 
+    public DuenioDTO registrarDuenio(DuenioDTO dto) {
 
-    public Duenio registrarDuenio(Duenio duenio) {
-        if (duenioRepository.existsByCedula(duenio.getCedula())) {
-            throw new RuntimeException("Ya existe un dueño con ese DNI");
-        }
-        return duenioRepository.save(duenio);
+        Duenio duenio = duenioMapper.toEntity(dto);
+        Duenio guardado = duenioRepository.save(duenio);
+
+        return duenioMapper.toDTO(guardado);
     }
 
-
-    public Optional<Duenio> buscarPorId(Long id) {
-        return duenioRepository.findById(id);
+    public List<DuenioDTO> listarTodos() {
+        return duenioRepository.findAll()
+                .stream()
+                .map(duenioMapper::toDTO)
+                .toList();
     }
 
-
-    public List<Duenio> getAllDuenios() {
-        return duenioRepository.findAll();
-    }
-
-
-    public Duenio updateDueno(Long id, Duenio duenioActualizado) {
+    public DuenioDTO buscarPorId(Long id) {
 
         Duenio duenio = duenioRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Dueño no encontrado"));
+                        new ResourceNotFoundException("Duenio", id));
 
-        duenio.setNombre(duenioActualizado.getNombre());
-        duenio.setApellido(duenioActualizado.getApellido());
-        duenio.setTelefono(duenioActualizado.getTelefono());
-        duenio.setEmail(duenioActualizado.getEmail());
-
-        return duenioRepository.save(duenio);
+        return duenioMapper.toDTO(duenio);
     }
 
-
-    public void deleteDueno(Long id) {
+    public DuenioDTO updateDuenio(Long id, DuenioDTO dto) {
 
         Duenio duenio = duenioRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Dueño no encontrado"));
+                        new ResourceNotFoundException("Duenio", id));
+
+        duenio.setNombre(dto.getNombre());
+        duenio.setApellido(dto.getApellido());
+        duenio.setTelefono(dto.getTelefono());
+        duenio.setEmail(dto.getEmail());
+
+        return duenioMapper.toDTO(
+                duenioRepository.save(duenio)
+        );
+    }
+
+    public void deleteDuenio(Long id) {
+
+        Duenio duenio = duenioRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Duenio", id));
 
         duenioRepository.delete(duenio);
     }
 
-    public Optional<Duenio> buscarPorEmail(String email) {
-        return duenioRepository.findByEmail(email);
+    public Optional<DuenioDTO> buscarPorEmail(String email) {
+        return duenioRepository.findByEmail(email)
+                .map(duenioMapper::toDTO);
     }
 
-    public List<Duenio> buscarPorNombre(String nombre) {
-        return duenioRepository.findByNombre(nombre);
+    public List<DuenioDTO> buscarPorNombre(String nombre) {
+        return duenioRepository.findByNombre(nombre)
+                .stream()
+                .map(duenioMapper::toDTO)
+                .toList();
     }
 
-    public List<Duenio> buscarPorApellido(String apellido) {
-        return duenioRepository.findByApellido(apellido);
+    public List<DuenioDTO> buscarPorApellido(String apellido) {
+        return duenioRepository.findByApellido(apellido)
+                .stream()
+                .map(duenioMapper::toDTO)
+                .toList();
     }
 
-    public List<Duenio> buscarPorNombreYApellido(String nombre, String apellido) {
-        return duenioRepository.findByNombreAndApellido(nombre, apellido);
-    }
+    public List<DuenioDTO> buscarPorNombreYApellido(
+            String nombre,
+            String apellido) {
 
+        return duenioRepository
+                .findByNombreAndApellido(nombre, apellido)
+                .stream()
+                .map(duenioMapper::toDTO)
+                .toList();
+    }
 }

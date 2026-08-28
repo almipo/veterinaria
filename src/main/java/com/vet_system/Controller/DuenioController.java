@@ -1,9 +1,11 @@
 package com.vet_system.Controller;
+import com.vet_system.DTO.DuenioDTO;
 import com.vet_system.Entity.Duenio;
 import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Service.DuenioService;
 import com.vet_system.Service.MascotaService;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,82 +17,81 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/duenio")
+
+@RequiredArgsConstructor
 public class DuenioController {
 
-    @Autowired
-    private DuenioService duenioService;
-    @Autowired
-    private MascotaService mascotaService;
-
-    // POST - crear dueño
+    private final DuenioService duenioService;
+    private final MascotaService mascotaService;
     @PostMapping
-    public ResponseEntity<Duenio> registrarDuenio(@RequestBody Duenio duenio) {
-
-        Duenio duenioGuardado = duenioService.registrarDuenio(duenio);
-
-        URI location = URI.create("/api/duenio/" + duenioGuardado.getId());
+    public ResponseEntity<DuenioDTO> registrarDuenio(
+            @RequestBody DuenioDTO dto) {
 
         return ResponseEntity
-                .created(location)
-                .body(duenioGuardado);
+                .status(HttpStatus.CREATED)
+                .body(duenioService.registrarDuenio(dto));
     }
 
-    // GET - buscar dueño por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Duenio>> buscarPorId(@PathVariable Long id){
-        Optional<Duenio> duenioBuscado= duenioService.buscarPorId(id);
-        if(duenioBuscado.isPresent()){
-            return ResponseEntity.ok(duenioBuscado);
-        }else {
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+
+        try {
+            return ResponseEntity.ok(
+                    duenioService.buscarPorId(id)
+            );
+
+        } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-
-    // GET - listar todos los dueños
     @GetMapping
-    public ResponseEntity<List<Duenio>> getAllDuenos() {
+    public ResponseEntity<List<DuenioDTO>> listarTodos() {
 
-        return ResponseEntity.ok(duenioService.getAllDuenios());
+        return ResponseEntity.ok(
+                duenioService.listarTodos()
+        );
     }
-    // PUT - modificar dueño
+
+
     @PutMapping("/{id}")
-    public ResponseEntity<Duenio> updateDueno(
+    public ResponseEntity<?> actualizarDuenio(
             @PathVariable Long id,
-            @RequestBody Duenio duenio) {
+            @RequestBody DuenioDTO dto) {
 
-        Duenio duenioActualizado =
-                duenioService.updateDueno(id, duenio);
-
-        return ResponseEntity.ok(duenioActualizado);
-    }
-
-    // DELETE - eliminar dueño
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDueno(@PathVariable Long id) {
-
-        duenioService.deleteDueno(id);
-
-        return ResponseEntity.noContent().build();
-    }
-
-// GET - buscar dueño por email
-    @GetMapping("/email/{email}")
-    public ResponseEntity<Optional<Duenio>> buscarPorEmail(
-            @PathVariable String email) {
-
-        Optional<Duenio> duenioBuscado =
-                duenioService.buscarPorEmail(email);
-
-        if (duenioBuscado.isPresent()) {
-            return ResponseEntity.ok(duenioBuscado);
-        } else {
+        try {
+            return ResponseEntity.ok(
+                    duenioService.updateDuenio(id, dto)
+            );
+        } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarDuenio(
+            @PathVariable Long id) {
+
+        try {
+            duenioService.deleteDuenio(id);
+            return ResponseEntity.noContent().build();
+
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> buscarPorEmail(@PathVariable String email) {
+
+        return duenioService.buscarPorEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/nombre/{nombre}")
-    public ResponseEntity<List<Duenio>> buscarPorNombre(
+    public ResponseEntity<List<DuenioDTO>> buscarPorNombre(
             @PathVariable String nombre) {
 
         return ResponseEntity.ok(
@@ -98,9 +99,8 @@ public class DuenioController {
         );
     }
 
-
     @GetMapping("/apellido/{apellido}")
-    public ResponseEntity<List<Duenio>> buscarPorApellido(
+    public ResponseEntity<List<DuenioDTO>> buscarPorApellido(
             @PathVariable String apellido) {
 
         return ResponseEntity.ok(
@@ -108,11 +108,10 @@ public class DuenioController {
         );
     }
 
-
-    @GetMapping("/nombre/{nombre}/apellido/{apellido}")
-    public ResponseEntity<List<Duenio>> buscarPorNombreYApellido(
-            @PathVariable String nombre,
-            @PathVariable String apellido) {
+    @GetMapping("/buscar")
+    public ResponseEntity<List<DuenioDTO>> buscarPorNombreYApellido(
+            @RequestParam String nombre,
+            @RequestParam String apellido) {
 
         return ResponseEntity.ok(
                 duenioService.buscarPorNombreYApellido(nombre, apellido)
@@ -120,15 +119,14 @@ public class DuenioController {
     }
 
     @GetMapping("/{id}/mascotas")
-    public ResponseEntity<?> listarMascotasDelDuenio(@PathVariable Long id) {
+    public ResponseEntity<?> getMascotasByDuenio(@PathVariable Long id) {
 
         try {
             return ResponseEntity.ok(
-                    mascotaService.buscarPorDuenio(id)
+                    mascotaService.getMascotasByDuenio(id)
             );
 
         } catch (ResourceNotFoundException e) {
-
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());

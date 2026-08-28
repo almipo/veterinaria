@@ -26,13 +26,7 @@ public class Turno {
     @Column
     private String motivo;
 
-    public enum EstadoTurno {
-        PENDIENTE,
-        CONFIRMADO,
-        CANCELADO,
-        FINALIZADO,
-        EN_CURSO
-    }
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoTurno estado = EstadoTurno.PENDIENTE;
