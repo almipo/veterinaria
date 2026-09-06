@@ -8,6 +8,7 @@ import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Service.DuenioService;
 import com.vet_system.Service.TurnoService;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,14 +34,12 @@ public class TurnoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getTurnoById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(
-                    turnoService.getTurnoById(id)
-            );
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<TurnoResponseDTO> getTurnoById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                turnoService.getTurnoById(id)
+        );
     }
 
     @GetMapping("/agenda")
@@ -57,48 +56,29 @@ public class TurnoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createTurno(
-            @RequestBody TurnoRequestDTO request) {
+    public ResponseEntity<TurnoResponseDTO> createTurno(
+            @Valid @RequestBody TurnoRequestDTO request) {
 
-        try {
-            TurnoResponseDTO nuevo =
-                    turnoService.createTurno(request);
+        TurnoResponseDTO nuevo =
+                turnoService.createTurno(request);
 
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(nuevo);
-
-        } catch (ResourceNotFoundException e) {
-
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getMessage());
-
-        } catch (RuntimeException e) {
-
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body(e.getMessage());
-        }
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevo);
     }
 
     @PatchMapping("/{id}/estado")
-    public ResponseEntity<?> actualizarEstado(
+    public ResponseEntity<TurnoResponseDTO> actualizarEstado(
             @PathVariable Long id,
             @RequestParam EstadoTurno estado,
             @RequestParam(required = false) String observaciones) {
 
-        try {
-            return ResponseEntity.ok(
-                    turnoService.actualizarEstado(
-                            id,
-                            estado,
-                            observaciones
-                    )
-            );
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                turnoService.actualizarEstado(
+                        id,
+                        estado,
+                        observaciones
+                )
+        );
     }
 }

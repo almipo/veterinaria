@@ -7,6 +7,7 @@ import com.vet_system.Entity.Mascota;
 import com.vet_system.Entity.Turno;
 import com.vet_system.Entity.Veterinario;
 import com.vet_system.Exception.ResourceNotFoundException;
+import com.vet_system.Exception.TurnoSuperpuestoException;
 import com.vet_system.Mapper.TurnoMapper;
 import com.vet_system.Repository.MascotaRepository;
 import com.vet_system.Repository.TurnoRepository;
@@ -81,7 +82,7 @@ public class TurnoService {
                 );
 
         if (existeTurno) {
-            throw new RuntimeException(
+            throw new TurnoSuperpuestoException(
                     "El veterinario ya tiene un turno en ese horario"
             );
         }

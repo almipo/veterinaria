@@ -2,6 +2,7 @@ package com.vet_system.Service;
 
 import com.vet_system.DTO.VeterinarioDTO;
 import com.vet_system.Entity.Veterinario;
+import com.vet_system.Exception.DuplicateResourceException;
 import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Mapper.VeterinarioMapper;
 import com.vet_system.Repository.VeterinarioRepository;
@@ -35,7 +36,7 @@ public class VeterinarioService {
     public VeterinarioDTO createVeterinario(VeterinarioDTO dto) {
 
         if (veterinarioRepository.existsByMatricula(dto.getMatricula())) {
-            throw new RuntimeException(
+            throw new DuplicateResourceException(
                     "Matrícula ya registrada: " + dto.getMatricula()
             );
         }

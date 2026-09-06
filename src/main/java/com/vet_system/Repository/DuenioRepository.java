@@ -18,4 +18,5 @@ public interface DuenioRepository extends JpaRepository<Duenio,Long> {
 
     List<Duenio> findByNombreAndApellido(String nombre, String apellido);
 
+
 }

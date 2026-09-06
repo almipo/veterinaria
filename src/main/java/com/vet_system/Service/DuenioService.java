@@ -1,6 +1,7 @@
 package com.vet_system.Service;
 import com.vet_system.DTO.DuenioDTO;
 import com.vet_system.Entity.Duenio;
+import com.vet_system.Exception.DuplicateResourceException;
 import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Mapper.DuenioMapper;
 import com.vet_system.Repository.DuenioRepository;
@@ -22,6 +23,12 @@ public class DuenioService {
     private final DuenioMapper duenioMapper;
 
     public DuenioDTO registrarDuenio(DuenioDTO dto) {
+
+        if (duenioRepository.existsByCedula(dto.getCedula())) {
+            throw new DuplicateResourceException(
+                    "Ya existe un dueño con el DNI " + dto.getCedula()
+            );
+        }
 
         Duenio duenio = duenioMapper.toEntity(dto);
         Duenio guardado = duenioRepository.save(duenio);

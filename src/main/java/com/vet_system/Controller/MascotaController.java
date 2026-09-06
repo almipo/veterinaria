@@ -5,6 +5,7 @@ import com.vet_system.DTO.MascotaDTO;
 import com.vet_system.Entity.Mascota;
 import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Service.MascotaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import java.util.Optional;
 @RequestMapping("/api/mascotas")
 @RequiredArgsConstructor
 public class MascotaController {
-
     private final MascotaService mascotaService;
 
     @GetMapping
@@ -30,66 +30,41 @@ public class MascotaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<MascotaDTO> buscarPorId(@PathVariable Long id) {
 
-        try {
-            return ResponseEntity.ok(
-                    mascotaService.getMascotaById(id)
-            );
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                mascotaService.getMascotaById(id)
+        );
     }
 
     @PostMapping
-    public ResponseEntity<?> registrarMascota(
+    public ResponseEntity<MascotaDTO> registrarMascota(
             @RequestParam Long duenioId,
-            @RequestBody MascotaDTO dto) {
+            @Valid @RequestBody MascotaDTO dto) {
 
-        try {
-            MascotaDTO nuevaMascota =
-                    mascotaService.createMascota(duenioId, dto);
+        MascotaDTO nuevaMascota =
+                mascotaService.createMascota(duenioId, dto);
 
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(nuevaMascota);
-
-        } catch (ResourceNotFoundException e) {
-
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getMessage());
-        }
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevaMascota);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarMascota(
+    public ResponseEntity<MascotaDTO> actualizarMascota(
             @PathVariable Long id,
-            @RequestBody MascotaDTO dto) {
+            @Valid @RequestBody MascotaDTO dto) {
 
-        try {
-            return ResponseEntity.ok(
-                    mascotaService.updateMascota(id, dto)
-            );
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                mascotaService.updateMascota(id, dto)
+        );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarMascota(
             @PathVariable Long id) {
 
-        try {
-            mascotaService.deleteMascota(id);
+        mascotaService.deleteMascota(id);
 
-            return ResponseEntity.noContent().build();
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-}
+        return ResponseEntity.noContent().build();
+    }}

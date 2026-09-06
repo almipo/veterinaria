@@ -5,6 +5,7 @@ import com.vet_system.Exception.ResourceNotFoundException;
 import com.vet_system.Service.DuenioService;
 import com.vet_system.Service.VeterinarioService;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,6 @@ import java.util.Optional;
 @RequestMapping("/api/veterinario")
 @RequiredArgsConstructor
 public class VeterinarioController {
-
     private final VeterinarioService veterinarioService;
 
     @GetMapping
@@ -29,60 +29,41 @@ public class VeterinarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getVeterinarioById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(
-                    veterinarioService.getVeterinarioById(id)
-            );
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<VeterinarioDTO> getVeterinarioById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                veterinarioService.getVeterinarioById(id)
+        );
     }
 
     @PostMapping
-    public ResponseEntity<?> createVeterinario(
-            @RequestBody VeterinarioDTO dto) {
+    public ResponseEntity<VeterinarioDTO> createVeterinario(
+            @Valid @RequestBody VeterinarioDTO dto) {
 
-        try {
-            VeterinarioDTO nuevo =
-                    veterinarioService.createVeterinario(dto);
+        VeterinarioDTO nuevo =
+                veterinarioService.createVeterinario(dto);
 
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(nuevo);
-
-        } catch (RuntimeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body(e.getMessage());
-        }
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateVeterinario(
+    public ResponseEntity<VeterinarioDTO> updateVeterinario(
             @PathVariable Long id,
-            @RequestBody VeterinarioDTO dto) {
+            @Valid @RequestBody VeterinarioDTO dto) {
 
-        try {
-            return ResponseEntity.ok(
-                    veterinarioService.updateVeterinario(id, dto)
-            );
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                veterinarioService.updateVeterinario(id, dto)
+        );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVeterinario(
             @PathVariable Long id) {
 
-        try {
-            veterinarioService.deleteVeterinario(id);
-            return ResponseEntity.noContent().build();
+        veterinarioService.deleteVeterinario(id);
 
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-}
+        return ResponseEntity.noContent().build();
+    }}
