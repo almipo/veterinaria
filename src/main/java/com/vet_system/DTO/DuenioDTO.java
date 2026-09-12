@@ -1,8 +1,6 @@
 package com.vet_system.DTO;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +23,8 @@ public class DuenioDTO {
     @Size(min = 7, max = 8, message = "El DNI debe tener entre 7 y 8 caracteres")
     private String cedula;
 
-    @NotBlank(message = "el telefono es obligatorio")
+    @NotNull(message = "El teléfono es obligatorio")
+    @Positive(message = "El teléfono debe ser positivo")
     private Integer telefono;
 
     @NotBlank(message = "El email es obligatorio")
