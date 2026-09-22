@@ -77,18 +77,20 @@ public class TurnoService {
                                 request.getVeterinarioId()
                         ));
 
-        boolean existeTurno =
-                turnoRepository.existsByVeterinarioIdAndFechaAndHora(
-                        request.getVeterinarioId(),
-                        request.getFecha(),
-                        request.getHora()
-                );
-
-        if (existeTurno) {
+        turnoRepository.findByVeterinarioIdAndFechaAndHora(
+                request.getVeterinarioId(),
+                request.getFecha(),
+                request.getHora()
+        ).ifPresent(turnoConflictivo -> {
             throw new TurnoSuperpuestoException(
-                    "El veterinario ya tiene un turno en ese horario"
+                    "El veterinario ya tiene el turno ID "
+                            + turnoConflictivo.getId()
+                            + " en el horario "
+                            + turnoConflictivo.getFecha()
+                            + " "
+                            + turnoConflictivo.getHora()
             );
-        }
+        });
 
         Turno turno = new Turno();
 

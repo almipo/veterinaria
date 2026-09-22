@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Optional;
 @Repository
 public interface TurnoRepository extends JpaRepository<Turno, Long> {
 
@@ -35,5 +35,10 @@ public interface TurnoRepository extends JpaRepository<Turno, Long> {
     // Historial de turnos de una mascota
     List<Turno> findByMascotaIdOrderByFechaDescHoraDesc(
             Long mascotaId
+    );
+    Optional<Turno> findByVeterinarioIdAndFechaAndHora(
+            Long veterinarioId,
+            LocalDate fecha,
+            LocalTime hora
     );
 }
