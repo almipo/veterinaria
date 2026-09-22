@@ -19,3 +19,11 @@ La validación de stock la implementé en la capa de servicio porque es una regl
 ### Cupo de mascotas
 
 La validación del cupo de mascotas la hice en la capa de servicio antes de guardar una nueva mascota. Consulto cuántas mascotas tiene asociadas actualmente el dueño mediante el repository. Como el modelo actual no tiene un campo para marcar una mascota como inactiva, considero activas a las mascotas que siguen registradas en la base de datos. Si el dueño ya tiene 5 mascotas, se lanza una CupoMascotasException y no se guarda la nueva mascota. Esta excepción es manejada por GlobalException y devuelve un código 422 con un mensaje indicando que se alcanzó el límite permitido.
+
+### Solapamiento
+
+La validación de solapamiento la hice en la capa de servicio antes de guardar un nuevo turno. Consulto si el veterinario ya tiene un turno en la misma fecha y a la misma hora. Si existe un turno en ese horario, no se guarda el nuevo turno y se lanza una TurnoSuperpuestoException. En el mensaje de error incluyo el id, la fecha y la hora del turno que está generando el conflicto. Esta excepción es manejada por GlobalException y devuelve un código 409 Conflict.
+
+### Decisión más difícil
+
+La parte que más me costó fue relacionar los medicamentos con los turnos y manejar al mismo tiempo el control del stock. Tuve que decidir dónde colocar esa lógica para no dejarla directamente en el controller. La termine implementando en TurnoService porque la asociación del medicamento y la validación del stock forman parte de la lógica de negocio. También tuve que asegurarme de que cuando el stock es cero no se haga la asociación y se devuelva un error 422. Cuando hay stock disponible, el medicamento se agrega al turno y se descuenta una unidad.
