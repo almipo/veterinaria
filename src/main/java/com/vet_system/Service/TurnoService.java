@@ -1,15 +1,16 @@
 package com.vet_system.Service;
 
+import com.vet_system.DTO.MedicamentoResponseDTO;
 import com.vet_system.DTO.TurnoRequestDTO;
 import com.vet_system.DTO.TurnoResponseDTO;
-import com.vet_system.Entity.EstadoTurno;
-import com.vet_system.Entity.Mascota;
-import com.vet_system.Entity.Turno;
-import com.vet_system.Entity.Veterinario;
+import com.vet_system.Entity.*;
 import com.vet_system.Exception.ResourceNotFoundException;
+import com.vet_system.Exception.StockInsuficienteException;
 import com.vet_system.Exception.TurnoSuperpuestoException;
+import com.vet_system.Mapper.MedicamentoMapper;
 import com.vet_system.Mapper.TurnoMapper;
 import com.vet_system.Repository.MascotaRepository;
+import com.vet_system.Repository.MedicamentoRepository;
 import com.vet_system.Repository.TurnoRepository;
 import com.vet_system.Repository.VeterinarioRepository;
 import jakarta.transaction.Transactional;
@@ -27,6 +28,8 @@ public class TurnoService {
     private final MascotaRepository mascotaRepository;
     private final VeterinarioRepository veterinarioRepository;
     private final TurnoMapper turnoMapper;
+    private final MedicamentoRepository medicamentoRepository;
+    private final MedicamentoMapper medicamentoMapper;
 
     public List<TurnoResponseDTO> getAllTurnos() {
         return turnoRepository.findAll()
@@ -121,4 +124,46 @@ public class TurnoService {
                 turnoRepository.save(turno)
         );
     }
+
+    public List<MedicamentoResponseDTO> getMedicamentosByTurno(Long turnoId) {
+
+        Turno turno = turnoRepository.findById(turnoId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Turno", turnoId));
+
+        return turno.getMedicamentos()
+                .stream()
+                .map(medicamentoMapper::toDTO)
+                .toList();
+    }
+
+    @Transactional
+    public MedicamentoResponseDTO agregarMedicamento(
+            Long turnoId,
+            Long medicamentoId) {
+
+        Turno turno = turnoRepository.findById(turnoId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Turno", turnoId));
+
+        Medicamento medicamento = medicamentoRepository.findById(medicamentoId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Medicamento", medicamentoId));
+
+        if (medicamento.getStock() <= 0) {
+            throw new StockInsuficienteException(
+                    "El medicamento " + medicamento.getNombre() + " no tiene stock disponible"
+            );
+        }
+
+        turno.getMedicamentos().add(medicamento);
+
+        medicamento.setStock(medicamento.getStock() - 1);
+
+        medicamentoRepository.save(medicamento);
+        turnoRepository.save(turno);
+
+        return medicamentoMapper.toDTO(medicamento);
+    }
+
 }

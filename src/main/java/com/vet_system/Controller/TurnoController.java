@@ -1,5 +1,6 @@
 package com.vet_system.Controller;
 
+import com.vet_system.DTO.MedicamentoResponseDTO;
 import com.vet_system.DTO.TurnoRequestDTO;
 import com.vet_system.DTO.TurnoResponseDTO;
 import com.vet_system.Entity.Duenio;
@@ -152,4 +153,27 @@ public class TurnoController {
                         observaciones
                 )
         );
-    }}
+
+
+
+    }
+
+
+    @GetMapping("/{id}/medicamentos")
+    public ResponseEntity<List<MedicamentoResponseDTO>> getMedicamentosByTurno(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                turnoService.getMedicamentosByTurno(id)
+        );
+    }
+    @PostMapping("/{turnoId}/medicamentos/{medicamentoId}")
+    public ResponseEntity<MedicamentoResponseDTO> agregarMedicamento(
+            @PathVariable Long turnoId,
+            @PathVariable Long medicamentoId) {
+
+        return ResponseEntity.ok(
+                turnoService.agregarMedicamento(turnoId, medicamentoId)
+        );
+    }
+}

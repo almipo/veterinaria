@@ -12,6 +12,22 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalException {
+
+    @ExceptionHandler(StockInsuficienteException.class)
+    public ResponseEntity<ErrorResponse> handleStockInsuficienteException(
+            StockInsuficienteException sie,
+            HttpServletRequest request) {
+
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(new ErrorResponse(
+                        LocalDateTime.now(),
+                        422,
+                        "Unprocessable Entity",
+                        sie.getMessage(),
+                        request.getRequestURI()
+                ));
+    }
 @ExceptionHandler(MethodArgumentNotValidException.class)
 public ResponseEntity<ErrorResponse> handleValidationException(
         MethodArgumentNotValidException ex,
@@ -33,6 +49,12 @@ public ResponseEntity<ErrorResponse> handleValidationException(
                     request.getRequestURI()
             ));
 }
+
+
+
+
+
+
 
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
