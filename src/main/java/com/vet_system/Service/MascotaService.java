@@ -3,6 +3,7 @@ package com.vet_system.Service;
 import com.vet_system.DTO.MascotaDTO;
 import com.vet_system.Entity.Duenio;
 import com.vet_system.Entity.Mascota;
+import com.vet_system.Exception.CupoMascotasException;
 import com.vet_system.Mapper.MascotaMapper;
 import com.vet_system.Repository.DuenioRepository;
 import com.vet_system.Repository.MascotaRepository;
@@ -53,7 +54,6 @@ public class MascotaService {
                 .map(mascotaMapper::toDTO)
                 .toList();
     }
-
     @Transactional
     public MascotaDTO createMascota(
             Long duenioId,
@@ -62,6 +62,15 @@ public class MascotaService {
         Duenio duenio = duenioRepository.findById(duenioId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Duenio", duenioId));
+
+        long cantidadMascotas =
+                mascotaRepository.countByDuenioId(duenioId);
+
+        if (cantidadMascotas >= 5) {
+            throw new CupoMascotasException(
+                    "El dueño ya alcanzó el límite de 5 mascotas activas"
+            );
+        }
 
         Mascota mascota = new Mascota();
 

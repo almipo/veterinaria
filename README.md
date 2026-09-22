@@ -15,3 +15,7 @@ Para actualizar la base de datos mantuve la configuración spring.jpa.hibernate.
 ### Validación de stock
 
 La validación de stock la implementé en la capa de servicio porque es una regla de negocio y no debería quedar en el controller. Antes de asociar un medicamento a un turno busco el medicamento y verifico que su stock sea mayor a cero. Si no tiene stock disponible lanzo una StockInsuficienteException. Esa excepción es manejada por GlobalException y devuelve un código 422 con un ErrorResponse descriptivo. Si el medicamento tiene stock, se agrega al turno y se descuenta una unidad del stock.
+
+### Cupo de mascotas
+
+La validación del cupo de mascotas la hice en la capa de servicio antes de guardar una nueva mascota. Consulto cuántas mascotas tiene asociadas actualmente el dueño mediante el repository. Como el modelo actual no tiene un campo para marcar una mascota como inactiva, considero activas a las mascotas que siguen registradas en la base de datos. Si el dueño ya tiene 5 mascotas, se lanza una CupoMascotasException y no se guarda la nueva mascota. Esta excepción es manejada por GlobalException y devuelve un código 422 con un mensaje indicando que se alcanzó el límite permitido.

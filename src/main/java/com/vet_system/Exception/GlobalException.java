@@ -12,7 +12,21 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalException {
+    @ExceptionHandler(CupoMascotasException.class)
+    public ResponseEntity<ErrorResponse> handleCupoMascotasException(
+            CupoMascotasException cme,
+            HttpServletRequest request) {
 
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(new ErrorResponse(
+                        LocalDateTime.now(),
+                        422,
+                        "Unprocessable Entity",
+                        cme.getMessage(),
+                        request.getRequestURI()
+                ));
+    }
     @ExceptionHandler(StockInsuficienteException.class)
     public ResponseEntity<ErrorResponse> handleStockInsuficienteException(
             StockInsuficienteException sie,
