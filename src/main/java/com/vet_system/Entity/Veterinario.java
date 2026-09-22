@@ -26,13 +26,20 @@ public class Veterinario
     @Column(unique = true, nullable = false)
     private String matricula;
 
-
-
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(nullable = false)
     private Especialidad especialidad;
 
+    @Column
+    private String email;
 
-    @OneToMany(mappedBy = "veterinario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List <Turno> turnos;
+    @Column
+    private Integer telefono;
+
+    @OneToMany(
+            mappedBy = "veterinario",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Turno> turnos;
 }
