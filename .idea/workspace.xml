@@ -4,26 +4,108 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afa36761-a2a9-4115-ba24-560e1f501c0c" name="Changes" comment="" />
+    <list default="true" id="ffc99817-217a-4d0a-8b91-d6f5e2c64cc7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-duenio.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-mascota.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-turno.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-veterinario.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/com/veterinaria/eureka_server/EurekaServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/test/java/com/veterinaria/eureka_server/EurekaServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-duenio/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/GlobalException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/DuenioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/application/DuenioServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/com.veterinaria/veterinaria/MsDuenioApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-duenio/src/test/java/com/veterinaria/MsDuenioApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-mascota/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/application/MascotaServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/Mascota.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/MascotaRepositoryPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/exception/DuplicateMacotaException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/exception/MascotaNortFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/port/MascotaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-turno/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/application/turnoServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/EstadoTurno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/Turno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/out/TurnoRepositoryPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/port/TurnoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-veterinario/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/application/VeterinarioServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/Especialidad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/Veterinario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/out/VeterinarioRepositoryPort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/port/VeterinarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/almipo/veterinaria.git",
-    "accountId": "1198dce0-b0e5-4b2a-bf8d-56f4d9482c11"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;almipo&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2,
-  &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3KKwJ1GOH14ch2Ius4ZMhZ0anq9" />
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/almipo/veterinaria.git&quot;,
+    &quot;accountId&quot;: &quot;1198dce0-b0e5-4b2a-bf8d-56f4d9482c11&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="temurin-21" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="temurin-21" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3KeRVudiFC9jbOesXZvKC4qTCAf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -32,33 +114,43 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "microservices",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/alan/Desktop/proyectos/sistema_veterinaria",
+    "last_opened_file_path": "C:/Users/alan/Desktop/proyectos/sistema_veterinaria/config-server/src/main/resources/config",
     "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": ""
-  },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
-    ]
+    "node.js.selected.package.jshint": "",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/alan/Desktop/proyectos/sistema_veterinaria/config-server/src/main/java/org/veterianria/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.18505748",
+    "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-duenio\ms-duenio\src\main\java\adapter\in\web\dto" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-duenio\ms-duenio\src\main\java\adapter" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms_duenio\src\main\java\domain" />
+      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\config-server\src\main\resources\config" />
+      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-mascota\src\main\java\com\vaterinaria" />
+      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-veterinario\src\main\resources" />
+      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-turno\src\main\resources" />
+      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-mascota\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-duenio\ms-duenio\src\main\java\adapter\in\web" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-duenio\ms-duenio\src\main\java\adapter\in\web\dto" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms-duenio\ms-duenio\src\main\java\application" />
-      <recent name="C:\Users\alan\Desktop\proyectos\sistema_veterinaria\ms_duenio\src\main\java" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.vaterinaria.application" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.vaterinaria.domain.model" />
+      <recent name="adapter.in.web.dto" />
+      <recent name="adapter" />
+      <recent name="com.vaterinaria.adapter.in.web" />
+      <recent name="com.vaterinaria.application" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -71,15 +163,30 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="afa36761-a2a9-4115-ba24-560e1f501c0c" name="Changes" comment="" />
-      <created>1791319492246</created>
+      <changelist id="ffc99817-217a-4d0a-8b91-d6f5e2c64cc7" name="Changes" comment="" />
+      <created>1791916074282</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1791319492246</updated>
+      <updated>1791916074282</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/config-server/src/main/java/org/veterianria/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

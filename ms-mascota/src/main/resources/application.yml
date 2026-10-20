@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ms-mascota
+  config:
+    import: "optional:configserver:http://localhost:8888"

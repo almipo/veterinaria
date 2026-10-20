@@ -5,16 +5,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-mascota/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-turno/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-veterinario/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-duenio/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/ms_duenio/pom.xml" />
-        <option value="$PROJECT_DIR$/ms_mascota/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="ms-21" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_26" default="true" project-jdk-name="openjdk-26" project-jdk-type="JavaSDK" />
 </project>
