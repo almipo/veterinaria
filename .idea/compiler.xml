@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -17,17 +18,9 @@
         <module name="ms-duenio" />
         <module name="ms-mascota" />
         <module name="ms-turno" />
-        <module name="ms-veterinario" />
-      </profile>
-      <profile name="Annotation profile for eureka-server" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
         <module name="eureka-server" />
+        <module name="ms-veterinario" />
+        <module name="ms-gateway" />
       </profile>
     </annotationProcessing>
   </component>
@@ -36,6 +29,7 @@
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="ms-duenio" options="-parameters" />
+      <module name="ms-gateway" options="-parameters" />
       <module name="ms-mascota" options="-parameters" />
       <module name="ms-turno" options="-parameters" />
       <module name="ms-veterinario" options="-parameters" />

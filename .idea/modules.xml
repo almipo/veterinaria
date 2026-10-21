@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ms-duenio/ms-duenio.iml" filepath="$PROJECT_DIR$/ms-duenio/ms-duenio.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-mascota/ms-mascota.iml" filepath="$PROJECT_DIR$/ms-mascota/ms-mascota.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-turno/ms-turno.iml" filepath="$PROJECT_DIR$/ms-turno/ms-turno.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-veterinario/ms-veterinario.iml" filepath="$PROJECT_DIR$/ms-veterinario/ms-veterinario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sistema_veterinaria.iml" filepath="$PROJECT_DIR$/sistema_veterinaria.iml" />
     </modules>
   </component>
 </project>

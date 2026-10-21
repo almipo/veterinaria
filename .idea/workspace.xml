@@ -5,53 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffc99817-217a-4d0a-8b91-d6f5e2c64cc7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-duenio.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-mascota.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-turno.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-veterinario.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config/ms-gateway.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-gateway/src/main/java/com/sistema_veterinaria/filters/LoggingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-gateway/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sistema_veterinaria.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/com/veterinaria/eureka_server/EurekaServerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/test/java/com/veterinaria/eureka_server/EurekaServerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-duenio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/GlobalException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/DuenioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/adapter/in/web/dto/DuenioResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/application/DuenioServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/java/com.veterinaria/veterinaria/MsDuenioApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-duenio/src/test/java/com/veterinaria/MsDuenioApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-mascota/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/application/MascotaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/Mascota.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/MascotaRepositoryPort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/exception/DuplicateMacotaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/out/exception/MascotaNortFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-mascota/src/main/java/domain/model/port/MascotaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-turno/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/application/turnoServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/EstadoTurno.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/Turno.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/out/TurnoRepositoryPort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-turno/src/main/java/domain/model/port/TurnoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-veterinario/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/application/VeterinarioServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/Especialidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/Veterinario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/out/VeterinarioRepositoryPort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-veterinario/src/main/java/domain/model/port/VeterinarioService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,11 +74,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.MsGatewayApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "microservices",
     "kotlin-language-version-configured": "true",
@@ -125,7 +91,7 @@
     "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/alan/Desktop/proyectos/sistema_veterinaria/config-server/src/main/java/org/veterianria/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.18505748",
     "settings.editor.selected.configurable": "terminal"
@@ -152,6 +118,16 @@
       <recent name="com.vaterinaria.adapter.in.web" />
       <recent name="com.vaterinaria.application" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/sistema_veterinaria/ms-gateway/static/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

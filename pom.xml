@@ -25,6 +25,7 @@
         <module>ms-mascota</module>
         <module>ms-veterinario</module>
         <module>ms-turno</module>
+        <module>ms-gateway</module>
 
         <module>eureka-server</module>
         <module>config-server</module>
