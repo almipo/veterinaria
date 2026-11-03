@@ -12,5 +12,5 @@ spring:
   info:
     app:
       name: ms-veterinario
-      description: Microservicio destinado a la gestion de veterinarios- Patitas Felices
+      description: Microservicio destinado a la gestion de veterinarios
       version: 1.0.0

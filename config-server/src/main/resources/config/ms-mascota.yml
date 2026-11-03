@@ -12,5 +12,5 @@ spring:
   info:
    app:
      name: ms-mascota
-     description: Microservicio destinado a la gestion de mascotas- Patitas Felices
+     description: Microservicio destinado a la gestion de mascotas
      version: 1.0.0

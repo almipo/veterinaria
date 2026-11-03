@@ -1,9 +1,6 @@
 package com.veterinaria.turno.adapter.in.web;
 
-import com.veterinaria.turno.domain.exception.MascotaNotFoundException;
-import com.veterinaria.turno.domain.exception.TurnoNotFoundException;
-import com.veterinaria.turno.domain.exception.TurnoSuperpuestoException;
-import com.veterinaria.turno.domain.exception.VeterinarioNotFoundException;
+import com.veterinaria.turno.domain.exception.*;
 import feign.FeignException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -11,8 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
+import com.veterinaria.turno.domain.exception.ServicioNoDisponibleException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -76,5 +76,19 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
         return ResponseEntity.status(status).body(response);
+    }
+    @ExceptionHandler(ServicioNoDisponibleException.class)
+    public ResponseEntity<Map<String, Object>> handleServicioNoDisponible(
+            ServicioNoDisponibleException ex) {
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("status", HttpStatus.SERVICE_UNAVAILABLE.value());
+        error.put("error", HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase());
+        error.put("message", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(error);
     }
 }
