@@ -98,14 +98,13 @@ function mostrarErrorFormulario(mensaje) {
 
 
 function formatearEspecialidad(especialidad) {
-
     const nombres = {
-        "clínica_general": "Clínica General",
-        "dermatología": "Dermatología",
-        "cirugía": "Cirugía"
+        "CLINICA_GENERAL": "ClínicaGeneral",
+        "DERMATOLOGIA": "Dermatología",
+        "CIRUGIA": "Cirugía"
     };
 
-    return nombres[especialidad] ?? especialidad ?? "";
+    return nombres[especialidad] || especialidad;
 }
 
 
@@ -435,9 +434,9 @@ async function guardarVeterinario(evento) {
         matricula:
             document.getElementById("veterinarioMatricula").value.trim(),
 
-        especialidad:
-            document.getElementById("veterinarioEspecialidad").value,
-
+        especialidad: convertirEspecialidad(
+            document.getElementById("veterinarioEspecialidad").value
+        ),
         email:
             document.getElementById("veterinarioEmail").value.trim() || null,
 
@@ -447,6 +446,19 @@ async function guardarVeterinario(evento) {
                 : null
     };
 
+    function convertirEspecialidad(valor) {
+        const mapa = {
+            "clínica general": "CLINICA_GENERAL",
+            "clinica general": "CLINICA_GENERAL",
+            "clínica_general": "CLINICA_GENERAL",
+            "dermatología": "DERMATOLOGIA",
+            "dermatologia": "DERMATOLOGIA",
+            "cirugía": "CIRUGIA",
+            "cirugia": "CIRUGIA"
+        };
+
+        return mapa[valor.trim().toLowerCase()] || valor;
+    }
     const editando =
         veterinarioEditandoId !== null;
 

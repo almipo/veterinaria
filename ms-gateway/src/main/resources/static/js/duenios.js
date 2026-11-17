@@ -1120,13 +1120,12 @@ async function cargarMascotasDelDuenio() {
 
     try {
 
+
         const resultado =
             await api(
-
-                URL_DUENIOS
-                + "/"
+                URL_MASCOTAS
+                + "/duenio/"
                 + duenioMascotasActualId
-                + "/mascotas"
             );
 
 

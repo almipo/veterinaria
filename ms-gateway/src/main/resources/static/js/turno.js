@@ -244,16 +244,26 @@ function pintarTurnos(datos) {
     datos.forEach(turno => {
 
         const mascota = mascotas.find(
-            m => m.id === turno.mascotaId
+            m => Number(m.id) === Number(turno.mascotaId)
         );
 
-        const duenio =
-            obtenerDuenioMascota(mascota);
+        const veterinario = veterinarios.find(
+            v => Number(v.id) === Number(turno.veterinarioId)
+        );
+
+        const nombreMascota = mascota
+            ? mascota.nombre
+            : "-";
+
+        const nombreVeterinario = veterinario
+            ? `${veterinario.nombre} ${veterinario.apellido}`
+            : "-";
+
+        const duenio = obtenerDuenioMascota(mascota);
 
         const nombreDuenio = duenio
             ? `${duenio.nombre} ${duenio.apellido}`
             : "-";
-
 
         const fila = document.createElement("tr");
 
@@ -267,13 +277,8 @@ function pintarTurnos(datos) {
 
             <td>${escapar(nombreDuenio)}</td>
 
-            <td>
-                ${escapar(turno.mascotaNombre)}
-            </td>
-
-            <td>
-                ${escapar(turno.veterinarioNombre)}
-            </td>
+           <td>${escapar(nombreMascota)}</td>
+<td>${escapar(nombreVeterinario)}</td>
 
             <td>
                 ${escapar(turno.motivo)}
@@ -442,5 +447,94 @@ document
         cargarTurnos();
     });
 
+document.addEventListener("DOMContentLoaded", async () => {
+    await cargarDatosAuxiliares();
+    await cargarTurnos();
+});
+function formatearFecha(fecha) {
+    if (!fecha) return "-";
+
+    const partes = fecha.split("-");
+
+    if (partes.length !== 3) return fecha;
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function formatearHora(hora) {
+    if (!hora) return "-";
+
+    // Convierte 10:30:00 en 10:30
+    return String(hora).substring(0, 5);
+}
+
+function claseEstado(estado) {
+    const clases = {
+        PENDIENTE: "bg-warning text-dark",
+        CONFIRMADO: "bg-primary",
+        CANCELADO: "bg-danger",
+        COMPLETADO: "bg-success",
+        REALIZADO: "bg-success"
+    };
+
+    return clases[estado] || "bg-secondary";
+}
+function formatearEstado(estado) {
+    if (!estado) return "-";
+
+    const nombres = {
+        PENDIENTE: "Pendiente",
+        CONFIRMADO: "Confirmado",
+        CANCELADO: "Cancelado",
+        COMPLETADO: "Completado",
+        REALIZADO: "Realizado"
+    };
+
+    return nombres[estado] || estado;
+}
+
+
+
+function abrirEstado(id) {
+    const turno = turnos.find(t => t.id === id);
+
+    if (!turno) {
+        mostrarAlerta("No se encontró el turno", "danger");
+        return;
+    }
+
+    document.getElementById("estadoTurnoId").value = id;
+    document.getElementById("nuevoEstado").value =
+        turno.estado || "PENDIENTE";
+    document.getElementById("observacionesEstado").value =
+        turno.observaciones || "";
+
+    modalEstado.show();
+}
+
+formEstado.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+
+    const id = document.getElementById("estadoTurnoId").value;
+    const estado = document.getElementById("nuevoEstado").value;
+    const observaciones =
+        document.getElementById("observacionesEstado").value;
+
+    const parametros = new URLSearchParams({ estado, observaciones });
+
+    try {
+        await fetchAPI(
+            `${URL_TURNOS}/${id}/estado?${parametros.toString()}`,
+            { method: "PATCH" }
+        );
+
+        modalEstado.hide();
+        mostrarAlerta("Estado actualizado correctamente");
+        await cargarTurnos();
+
+    } catch (error) {
+        mostrarAlerta(error.message, "danger");
+    }
+});
 
 //
