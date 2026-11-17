@@ -1,8 +1,8 @@
 // frontend/js/mascotas.js
 // CRUD de Mascotas - Bootstrap 5 + JavaScript vanilla + Fetch API
 
-const URL_MASCOTAS = "http://localhost:8080/api/mascotas";
-const URL_DUENIOS = "http://localhost:8080/api/duenio";
+const URL_MASCOTAS = "/api/mascotas";
+const URL_DUENIOS = "/api/duenos";
 
 let mascotas = [];
 let duenios = [];
@@ -143,7 +143,7 @@ async function extraerMensajeError(respuesta) {
 
 async function fetchAPI(url, opciones = {}) {
 
-    const respuesta = await fetch(url, opciones);
+    const respuesta = await VetAuth.request(url, opciones);
 
     if (!respuesta.ok) {
 

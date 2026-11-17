@@ -1,7 +1,7 @@
 // frontend/js/veterinarios.js
 // CRUD de Veterinarios - Bootstrap 5 + JavaScript vanilla + Fetch API
 
-const URL_VETERINARIOS = "http://localhost:8080/api/veterinario";
+const URL_VETERINARIOS = "/api/veterinarios";
 
 let veterinarios = [];
 let veterinarioEditandoId = null;
@@ -149,7 +149,7 @@ async function extraerMensajeError(respuesta) {
 
 async function fetchAPI(url, opciones = {}) {
 
-    const respuesta = await fetch(url, opciones);
+    const respuesta = await VetAuth.request(url, opciones);
 
     if (!respuesta.ok) {
 

@@ -27,8 +27,10 @@
         <module>ms-turno</module>
         <module>ms-gateway</module>
 
+
         <module>eureka-server</module>
         <module>config-server</module>
+        <module>ms-auth</module>
     </modules>
 
     <properties>

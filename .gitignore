@@ -1,0 +1,19 @@
+# Maven
+target/
+**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+
+# Variables de entorno
+.env
+.env.*
+!.env.example

@@ -38,6 +38,13 @@ spring:
                     redis-rate-limiter.burstCapacity: 20
                     redis-rate-limiter.requestedTokens: 1
 
+            - id: ms-auth
+              uri: lb://ms-auth
+              predicates:
+                - Path=/auth/**
+jwt:
+  secret: sistema-veterinaria-secret-key-2026-muy-larga-y-segura
+
 eureka:
   client:
     service-url:

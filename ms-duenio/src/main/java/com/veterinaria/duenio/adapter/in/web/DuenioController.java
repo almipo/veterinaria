@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/duenio")
+@RequestMapping({"/api/duenos", "/api/duenio"})
 @RequiredArgsConstructor
 @Tag(name = "Dueños", description = "Operaciones para gestionar dueños")
 public class DuenioController {

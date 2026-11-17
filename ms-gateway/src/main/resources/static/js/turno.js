@@ -1,9 +1,9 @@
-const API_BASE = "http://localhost:8080";
+const API_BASE = "";
 
-const URL_TURNOS = API_BASE + "/api/turno";
+const URL_TURNOS = API_BASE + "/api/turnos";
 const URL_MASCOTAS = API_BASE + "/api/mascotas";
-const URL_VETERINARIOS = API_BASE + "/api/veterinario";
-const URL_DUENIOS = API_BASE + "/api/duenio";
+const URL_VETERINARIOS = API_BASE + "/api/veterinarios";
+const URL_DUENIOS = API_BASE + "/api/duenos";
 
 let turnos = [];
 let mascotas = [];
@@ -27,7 +27,7 @@ const modalEstado = new bootstrap.Modal(modalEstadoEl);
 
 async function fetchAPI(url, opciones = {}) {
 
-    const respuesta = await fetch(url, opciones);
+    const respuesta = await VetAuth.request(url, opciones);
 
     if (!respuesta.ok) {
 

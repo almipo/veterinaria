@@ -1,0 +1,27 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: ms-auth
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+info:
+  app:
+    name: ms-auth
+    description: Microservicio de autenticación y autorización
+
+jwt:
+  secret: sistema-veterinaria-secret-key-2026-muy-larga-y-segura

@@ -3,10 +3,10 @@
 // CRUD + búsquedas + gestión de mascotas
 // ======================================================
 
-const API_BASE = "http://localhost:8080";
+const API_BASE = "";
 
 const URL_DUENIOS =
-    API_BASE + "/api/duenio";
+    API_BASE + "/api/duenos";
 
 const URL_MASCOTAS =
     API_BASE + "/api/mascotas";
@@ -338,7 +338,7 @@ async function api(
 ) {
 
     const respuesta =
-        await fetch(url, opciones);
+        await VetAuth.request(url, opciones);
 
 
     if (!respuesta.ok) {
